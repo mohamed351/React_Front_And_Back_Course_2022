@@ -5,6 +5,9 @@ import {useState} from "react";
 import feedBackData from "./data";
 import FeedbackForm from "./components/FeedbackForm";
 import { v4 as uuidv4 } from 'uuid';
+import {BrowserRouter , Route  , Routes } from "react-router-dom";
+import AboutIconLink from "./components/AboutIcon";
+import AboutPage from "./Pages/AboutPage";
 
 function App() {
 
@@ -17,13 +20,20 @@ function App() {
       });
    }
   return (
-    <>
-        <Header></Header>
-        <div className="container">
+  <BrowserRouter>
+      <Header></Header>
+      <div className="container">
+      <Routes>
+      <Route exact path="/" element={( <> 
         <FeedbackForm addFeedback={addFeedback}></FeedbackForm>
-        <FeedbackList feedBackList={feedBack}></FeedbackList>
-        </div>
-     </>
+        <FeedbackList feedBackList={feedBack}></FeedbackList>  </>)} />
+
+
+        <Route path="/about" element={<AboutPage/>}></Route>
+      </Routes>
+      </div>
+     <AboutIconLink />
+     </BrowserRouter>
   )
 }
 
